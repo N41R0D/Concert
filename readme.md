@@ -1,3 +1,18 @@
+# Projet salle de concert by Groupe
+
+## Init de la BDD
+
+```
+CREATE DATABASE IF NOT EXISTS `concert` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'symfony'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON blog.* TO 'symfony'@'localhost'
+FLUSH PRIVILEGES;
+```
+
+## BDD
+---
+Vérifier dans le fichier .env la variable DATABASE_URL pour qu'elle corresponde à votre base de données.
+
 # Initialisation du projet
 
 config la bdd dans le .env
@@ -13,16 +28,37 @@ Configurer la BDD dans le .env
 ```bash
 symfony server:start
 # url de test => localhost:8000/api
-```
-
-```bash
-encore dev-server
-#Pour ne pas se tapper une erreur
+#et
+npm run dev-server
+#Pour le front
 ```
 
 config api platform
 packages => api_platform.yml
 routes => api_platform.yml
+
+## Création simplifiée
+---
+### Créer une entité
+```
+symfony console make:entity
+```
+### Créer une migration
+```
+symfony console make:migration
+```
+### Lancer la migration
+```
+symfony console doctrine:migrations:migrate
+```
+### Commande pour créer une fixture
+```
+symfony console make:fixtures
+```
+### Lancer les fixtures
+```
+symfony console doctrine:fixtures:load
+```
 
 # Doc Api-platform
 ## configuration
