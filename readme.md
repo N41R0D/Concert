@@ -1,45 +1,3 @@
-# Créer un nouveau projet
-```bash
-Symfony new concert --version="^4.4" --full
-
-composer require api webpack-encore
-
-npm install
-```
-
-Configurer la BDD dans le .env
-```bash
-symfony server:start
-# url de test => localhost:8000/api
-```
-
-config api platform
-packages => api_platform.yml
-routes => api_platform.yml
-
-Attention faker est abandonnée par son createur depuis debut décembre :'(.
-```bash
-composer require fzaninotto/faker orm-fixtures --dev
-```
-
-Config webpack pour react 
-```js
-// uncomment if you use React
-.enableReactPreset()
-```
-
-react 
-```bash
-npm install @babel/preset-react@^7.0.0 --save-dev
-npm i react react-dom react-router axios
-# + react-router@5.2.0 + react-dom@17.0.1 + react@17.0.1 + axios@0.21.1
-```
-
-Jwt
-```bash
-npm i jwt-decode 
-```
-
 # Initialisation du projet
 
 config la bdd dans le .env
@@ -50,6 +8,21 @@ npm install
 
 php bin/console doctrine:database:create
 ```
+
+Configurer la BDD dans le .env
+```bash
+symfony server:start
+# url de test => localhost:8000/api
+```
+
+```bash
+encore dev-server
+#Pour ne pas se tapper une erreur
+```
+
+config api platform
+packages => api_platform.yml
+routes => api_platform.yml
 
 # Doc Api-platform
 ## configuration
