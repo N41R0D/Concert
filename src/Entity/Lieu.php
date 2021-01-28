@@ -51,9 +51,15 @@ class Lieu
      */
     private $id_priva;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Concert::class, mappedBy="idLieu")
+     */
+    private $concerts;
+
     public function __construct()
     {
         $this->id_priva = new ArrayCollection();
+        $this->concerts = new ArrayCollection();
     }
 
 
@@ -146,6 +152,36 @@ class Lieu
             // set the owning side to null (unless already changed)
             if ($idPriva->getIdLieu() === $this) {
                 $idPriva->setIdLieu(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Concert[]
+     */
+    public function getConcerts(): Collection
+    {
+        return $this->concerts;
+    }
+
+    public function addConcert(Concert $concert): self
+    {
+        if (!$this->concerts->contains($concert)) {
+            $this->concerts[] = $concert;
+            $concert->setIdLieu($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConcert(Concert $concert): self
+    {
+        if ($this->concerts->removeElement($concert)) {
+            // set the owning side to null (unless already changed)
+            if ($concert->getIdLieu() === $this) {
+                $concert->setIdLieu(null);
             }
         }
 

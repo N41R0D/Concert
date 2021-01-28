@@ -74,6 +74,12 @@ class Concert
      */
     private $artist_presentation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Lieu::class, inversedBy="concerts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idLieu;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -207,6 +213,18 @@ class Concert
     public function setArtistPresentation(?string $artist_presentation): self
     {
         $this->artist_presentation = $artist_presentation;
+
+        return $this;
+    }
+
+    public function getIdLieu(): ?Lieu
+    {
+        return $this->idLieu;
+    }
+
+    public function setIdLieu(?Lieu $idLieu): self
+    {
+        $this->idLieu = $idLieu;
 
         return $this;
     }

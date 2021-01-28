@@ -28,20 +28,33 @@ class UserFixtures extends Fixture
             ->setRoles(['ROLE_ADMIN'])
             ->setCivility($faker->titleMale)
             ->setBdDate(\DateTime::createFromFormat('Y-m-d', $faker->date($format = 'Y-m-d', $max = '20 years')))
-//            ->setBdDate(\DateTime::createFromFormat('Y-m-d', "2018-09-09"))
             ->setEmail($faker->email)
             ->setPassword($this->encoder->encodePassword($user, 'test'))
             ->setStreet($faker->streetAddress)
-            ->setZipcode($faker->postcode)
+//            ->setZipcode($faker->postcode)
+            ->setZipcode(66666)
             ->setCity($faker->city)
             ->setCountry($faker->country)
             ->setPhone($faker->phoneNumber)
             ;
-
         $manager->persist($user);
 
-        // $product = new Product();
-        // $manager->persist($product);
+        $user = new User();
+        $user
+            ->setFirstname($faker->firstName)
+            ->setLastname($faker->lastName)
+            ->setRoles(['ROLE_USER'])
+            ->setCivility($faker->titleMale)
+            ->setBdDate(\DateTime::createFromFormat('Y-m-d', $faker->date($format = 'Y-m-d', $max = '20 years')))
+            ->setEmail($faker->email)
+            ->setPassword($this->encoder->encodePassword($user, 'test'))
+            ->setStreet($faker->streetAddress)
+            ->setZipcode(12222)
+            ->setCity($faker->city)
+            ->setCountry($faker->country)
+            ->setPhone($faker->phoneNumber)
+        ;
+        $manager->persist($user);
 
         $manager->flush();
     }
