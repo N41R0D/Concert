@@ -1,12 +1,22 @@
 import './styles/app.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-console.log('test');
+
+const Body = (props) => {
+    return <>
+    <h1>{props.title}</h1>
+    </>
+}
 
 const App = () => {
-    return <h1>React app</h1>;
+    return <>
+    <Body title="1, 2, 3" />
+    </>;
 }
+
+
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(<App />, rootElement);
