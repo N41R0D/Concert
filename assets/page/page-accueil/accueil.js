@@ -1,10 +1,23 @@
 import React, { Component } from "react";
 import { Carousel } from 'react-bootstrap';
-import CardComponent  from "../card-component/card";
+import CardComponent  from "/Users/oiseaupython/Dev/Concert/assets/component/card-component/card.js"
+import axios from 'axios';
 import "./accueil.scss"
 
 class Accueil extends Component {
-	render() {
+    /*state = {
+        articles: []
+    }
+
+    componentDidMount() {
+        axios.get(`http://localhost:8000/api/articles/1`)
+            .then(res => {
+                const articles = res.data;
+                this.setState({ articles });
+            })
+    }*/
+
+    render() {
 		return (
 			<div>
 				<Carousel>
@@ -28,8 +41,13 @@ class Accueil extends Component {
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
-                <h2>osef</h2>
-                <CardComponent/>
+                {/*<ul>
+                    {this.state.articles.map(article => <li>{article.description}</li>)}
+                </ul>*/}
+                <div className="accueilWrapper">
+                    <h2>PROCHAINEMENT DANS NOS SALLES</h2>
+                    <CardComponent/>
+                </div>
 			</div>
 		);
 	}
