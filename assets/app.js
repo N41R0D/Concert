@@ -4,14 +4,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './page/page-accueil/accueil';
 
+import Footer from './component/footer-component/Footer';
 
-/*const Body = (props) => {
-    return <>
-    <h1>{props.title}</h1>
-    </>
-}*/
-
-ReactDOM.render(
-    <App />,
+ReactDOM.render(<>
+    <App />
+    <Footer />
+    </>,
   document.getElementById('root')
 );

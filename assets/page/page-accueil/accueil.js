@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Carousel } from 'react-bootstrap';
-import CardComponent  from "/Users/oiseaupython/Dev/Concert/assets/component/card-component/card.js"
+import CardComponent  from "../../component/card-component/card"
 import axios from 'axios';
 import "./accueil.scss"
 

@@ -1,0 +1,26 @@
+.footer{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgb(156, 156, 156);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+.footer p {
+    font-size: small;
+}
+
+.footer > .row > div[class^="col"] {
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000;
+}
+
+.footer > .row > div[class^="col"]:first-child {
+  border-left: none;
+}
+
+.footer > .row > div[class^="col"]:last-child {
+  border-right: none;
+}
