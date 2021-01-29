@@ -1,22 +1,13 @@
 import './styles/app.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './page/page-accueil/accueil';
 
+import Footer from './component/footer-component/Footer';
 
-const Body = (props) => {
-    return <>
-    <h1>{props.title}</h1>
-    </>
-}
-
-const App = () => {
-    return <>
-    <Body title="1, 2, 3" />
-    </>;
-}
-
-
-
-const rootElement = document.getElementById('root');
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<>
+    <App />
+    <Footer />
+    </>,
+  document.getElementById('root')
+);

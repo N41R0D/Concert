@@ -3,7 +3,9 @@
         "@babel/preset-react": "^7.0.0",
         "@symfony/webpack-encore": "^0.32.0",
         "core-js": "^3.0.0",
+        "node-sass": "^4.14.1",
         "regenerator-runtime": "^0.13.2",
+        "sass-loader": "^9.0.3",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -16,9 +18,8 @@
     },
     "dependencies": {
         "axios": "^0.21.1",
-        "bootstrap": "^4.6.0",
+        "jwt-decode": "^3.1.2",
         "react": "^17.0.1",
-        "react-bootstrap": "^1.4.3",
         "react-dom": "^17.0.1",
         "react-router": "^5.2.0"
     }
