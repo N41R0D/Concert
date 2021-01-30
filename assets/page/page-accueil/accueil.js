@@ -8,18 +8,20 @@ import "./accueil.scss"
 
 const Accueil = () => {
     const [listArt, setListArt] = useState([]);
-    
+    const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         const url = "https://127.0.0.1:8000/api/articles";
+        setIsLoading(true);
+
         axios.get(url, {
             headers: {
             'Accept': 'application/json'
           }}
             )
         .then((response) =>{
-            console.log(response.data);
             setListArt(response.data);
-            console.log(listArt);
+            setIsLoading(false);
         })
         .catch((error) => { console.log(error)})
     },[])
@@ -59,15 +61,21 @@ const Accueil = () => {
 			<div className="accueilWrapper">
 				<div className="nextConcert">
 					<h2>prochainement dans nos salles</h2>
-					<div className="cardWrapper">
-						{listArt.slice(0, 8).map((article) => {
-							return (
-								<CardComponent
-									key={article.id}
-									article={article}
-								/>
-							);
-						})}
+                    <div className="cardWrapper">
+                        {isLoading ? (
+                            <div>Chargement ...</div>
+                        ) : (
+                                
+                            listArt.slice(0, 8).map((article) => {
+                                return (
+                                    <CardComponent
+                                        key={article.id}
+                                        article={article}
+                                    />
+                                );
+                            })
+                        )}
+                        
 					</div>
 					<Button variant="outline-primary">Primary</Button>{" "}
 				</div>
