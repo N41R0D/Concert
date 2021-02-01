@@ -9,7 +9,7 @@ const Accueil = () => {
     const [listArt, setListArt] = useState([]);
     
     useEffect(() => {
-        const url = "http://127.0.0.1:8000/api/articles";
+        const url = "https://127.0.0.1:8000/api/articles";
         axios.get(url, {
             headers: {
             'Accept': 'application/json'

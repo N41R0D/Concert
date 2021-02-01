@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Container, Row, Col, Button,InputGroup,FormControl, Nav } from 'react-bootstrap';
+import { Container, Row, Col, Button,InputGroup,FormControl, Nav, Image } from 'react-bootstrap';
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./Footer.scss"
 
 class Footer extends Component {
@@ -14,17 +15,17 @@ class Footer extends Component {
                 <p>Suivez-nous sur nos réseaux sociaux pour vous tenir informé des concerts à venir !</p>
                 <Nav className="justify-content-center" activeKey="/home">
     <Nav.Item>
-      <Nav.Link href="/home">FB</Nav.Link>
+      <Nav.Link href="/home"><Image src="https://images2.imgbox.com/cb/60/OLTZgTES_o.png" rounded /></Nav.Link>
     </Nav.Item>
     <Nav.Item>
-      <Nav.Link eventKey="link-1">Insta</Nav.Link>
+      <Nav.Link eventKey="link-1"><Image src="https://images2.imgbox.com/22/a8/IVRwecSa_o.png" rounded /></Nav.Link>
     </Nav.Item>
     <Nav.Item>
-      <Nav.Link eventKey="link-2">Twit</Nav.Link>
+      <Nav.Link eventKey="link-2"><Image src="https://images2.imgbox.com/de/e7/047X7LBw_o.png" rounded /></Nav.Link>
     </Nav.Item>
     <Nav.Item>
       <Nav.Link eventKey="disabled">
-        YT
+      <Image src="https://images2.imgbox.com/63/c3/xxxNBdNB_o.png" rounded />
       </Nav.Link>
     </Nav.Item>
   </Nav>
@@ -100,7 +101,7 @@ class Footer extends Component {
         </Row>
         <Row>
             <Col className="text-center">
-                <p> 2021 Symfony Concert - Tous droits réservés</p>
+                <p> © 2021 Symfony Concert - Tous droits réservés</p>
             </Col>
         </Row>
     </Container>
