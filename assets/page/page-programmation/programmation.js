@@ -32,9 +32,7 @@ const Programmation = () => {
 						lieu: dataLieus.data,
 						concert: dataConcerts.data,
                     });
-                    
                     setIsData(true);
-                    setIsLoading(true);
                     console.log("la data est prête");
 				})
         ); 
