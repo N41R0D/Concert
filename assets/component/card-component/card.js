@@ -9,9 +9,10 @@ class CardComponent extends React.Component {
     super(props);
   }
 
-
   card() {
     //Object.keys(this.props)[0] retourne le premier élément du props 
+    const test = this.props.concert.date;
+    
     switch (Object.keys(this.props)[0]) {
 		case "concert":
 			return (
@@ -22,7 +23,15 @@ class CardComponent extends React.Component {
 
 					<Card.Body>
 						<Card.Title>{this.props.concert.artistName}</Card.Title>
-						<Card.Text>{this.props.concert.date}</Card.Text>
+						<Card.Text>
+							{
+								new Intl.DateTimeFormat("fr-FR", {
+                  year: "numeric",
+                  month: "long",
+                  day: "2-digit",
+                }).format(this.props.concert.date)
+							}
+						</Card.Text>
 						<Button variant="primary">Go somewhere</Button>
 					</Card.Body>
 				</Card>
