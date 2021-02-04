@@ -85,6 +85,16 @@ class Concert
      */
     private $affiche;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $categories = [];
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isMultimedia;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -242,6 +252,30 @@ class Concert
     public function setAffiche(?string $affiche): self
     {
         $this->affiche = $affiche;
+
+        return $this;
+    }
+
+    public function getCategories(): ?array
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?array $categories): self
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    public function getIsMultimedia(): ?bool
+    {
+        return $this->isMultimedia;
+    }
+
+    public function setIsMultimedia(bool $isMultimedia): self
+    {
+        $this->isMultimedia = $isMultimedia;
 
         return $this;
     }
