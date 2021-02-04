@@ -12,7 +12,10 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  *
- * @ApiResource
+ * @ApiResource(
+ *      collectionOperations={"get", "post"},
+ *      itemOperations={"get", "put", "patch", "delete"}
+ * )
  */
 class User implements UserInterface
 {

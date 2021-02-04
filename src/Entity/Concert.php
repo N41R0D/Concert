@@ -20,7 +20,7 @@ class Concert
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="artist_name", type="string", length=255)
      */
     private $artist_name;
 
@@ -79,6 +79,11 @@ class Concert
      * @ORM\JoinColumn(nullable=false)
      */
     private $idLieu;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $affiche;
 
     public function getId(): ?int
     {
@@ -225,6 +230,18 @@ class Concert
     public function setIdLieu(?Lieu $idLieu): self
     {
         $this->idLieu = $idLieu;
+
+        return $this;
+    }
+
+    public function getAffiche(): ?string
+    {
+        return $this->affiche;
+    }
+
+    public function setAffiche(?string $affiche): self
+    {
+        $this->affiche = $affiche;
 
         return $this;
     }
