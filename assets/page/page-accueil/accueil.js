@@ -9,16 +9,14 @@ const Accueil = () => {
     const [listArt, setListArt] = useState([]);
     
     useEffect(() => {
-        const url = "http://127.0.0.1:8000/api/articles";
+        const url = "https://127.0.0.1:8000/api/articles";
         axios.get(url, {
             headers: {
             'Accept': 'application/json'
           }}
             )
         .then((response) =>{
-            console.log(response.data);
             setListArt(response.data);
-            console.log(listArt);
         })
         .catch((error) => { console.log(error)})
     },[])
@@ -97,7 +95,6 @@ const Accueil = () => {
 					</div>
 				</div>
             </div>
-            <Footer/>
 		</div>
 	);
 }
