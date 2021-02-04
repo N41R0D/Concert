@@ -7,8 +7,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture implements OrderedFixtureInterface
 {
     /** @var UserPasswordEncoderInterface */
     private $encoder;
@@ -56,5 +57,11 @@ class UserFixtures extends Fixture
         $manager->persist($user);
 
         $manager->flush();
+        $this->setReference('user', $user);
+    }
+
+    public function getOrder()
+    {
+        return 2; // number in which order to load fixtures
     }
 }

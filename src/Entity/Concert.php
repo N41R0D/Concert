@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ConcertRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -86,7 +88,7 @@ class Concert
     private $affiche;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="json", nullable=true)
      */
     private $categories = [];
 
@@ -94,6 +96,16 @@ class Concert
      * @ORM\Column(type="boolean")
      */
     private $isMultimedia;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="concert", orphanRemoval=true)
+     */
+    private $reservations;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -276,6 +288,36 @@ class Concert
     public function setIsMultimedia(bool $isMultimedia): self
     {
         $this->isMultimedia = $isMultimedia;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setConcert($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getConcert() === $this) {
+                $reservation->setConcert(null);
+            }
+        }
 
         return $this;
     }
