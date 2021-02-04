@@ -26,16 +26,6 @@ const Reservation = (props) => {
     })
   })
 
-  generateSeat((nbrMax) => {
-
-  })
-
-  generateRow((nbrCol)=>{
-    if(nbrCol=12){
-
-    }
-  })
-
 
 
   return (
