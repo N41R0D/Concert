@@ -1,23 +1,36 @@
 .test {
-    height: 30vh;
-    background-color: aqua;
+  height: 30vh;
+  background-color: aqua;
 }
 
 .accueilWrapper h2 {
-    text-transform: uppercase;
-    margin: 25px 0;
+  text-transform: uppercase;
+  margin: 25px 0;
 }
 
 .accueilWrapper {
-    width: 85%;
-    margin: auto;
+  width: 85%;
+  margin: auto;
 }
 
 .cardWrapper {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.btn-outline-primary {
+.accueilButton {
+  text-transform: uppercase;
+  margin: 25px 0;
+}
 
+.nextConcert button{
+  margin: auto ;
+}
+
+.actualites button{
+  margin: auto ;
+}
+
+.infoSalle {
+  
 }

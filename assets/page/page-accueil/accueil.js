@@ -82,18 +82,20 @@ const Accueil = () => {
 					<div className="cardWrapper">
 						{!isData ? (
 							<div>Chargement ...</div>
-              ) : (
-                  apiData.concert.slice(0, 8).map((concert) => {
-                    return (
-                      <CardComponent
-                        key={concert.id}
-                        concert={concert}
-                      />
+						) : (
+							apiData.concert.slice(0, 8).map((concert) => {
+								return (
+									<CardComponent
+										key={concert.id}
+										concert={concert}
+									/>
 								);
 							})
 						)}
 					</div>
-					<Button variant="outline-primary">Primary</Button>{" "}
+					<Button className="accueilButton" variant="outline-primary">
+						voir toute la programmation
+					</Button>{" "}
 				</div>
 				<div className="actualites">
 					<h2>actualités</h2>
@@ -111,18 +113,20 @@ const Accueil = () => {
 							})
 						)}
 					</div>
+					<Button className="accueilButton" variant="outline-primary">
+						voir toutes les actualités
+					</Button>{" "}
 				</div>
-				<div className="actualites">
+				<div className="infoSalle">
 					<h2>des salles à votre disposition</h2>
 					<div className="cardWrapper">
-						{/*apiData.articles.slice(0, 4).map((article) => {
-							return (
-								<CardComponent
-									key={article.id}
-									article={article}
-								/>
-							);
-						})*/}
+						<p>blablabla</p>
+						<Button
+							className="accueilButton"
+							variant="outline-primary"
+						>
+							privatiser
+						</Button>{" "}
 					</div>
 				</div>
 			</div>
