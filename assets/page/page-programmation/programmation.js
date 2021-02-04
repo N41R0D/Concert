@@ -27,18 +27,16 @@ const Programmation = () => {
 				})
 			]) 
 			.then(
-                axios.spread((dataConcerts, dataLieus) => {
-                    setApiData({
-						lieu: dataLieus.data,
-						concert: dataConcerts.data,
-                    });
-                    
-                    setIsData(true);
-                    setIsLoading(true);
-                    console.log("la data est prête");
-				})
-        ); 
-        }, []
+        axios.spread((dataConcerts, dataLieus) => {
+            setApiData({
+              lieu: dataLieus.data,
+              concert: dataConcerts.data,
+            });
+            setIsData(true);
+            console.log("la data est prête");
+				  })
+      ); 
+    }, []
     );
 
     
@@ -55,7 +53,6 @@ const Programmation = () => {
 				) : (
 					<ul>
 						{apiData.lieu.map((location) => {
-							console.log(location);
 							return <li key={location.id}>{location.name}</li>;
 						})}
 					</ul>
