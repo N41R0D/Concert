@@ -6,8 +6,9 @@ use App\Entity\Article;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class AppFixtures extends Fixture
+class AppFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -27,5 +28,10 @@ class AppFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public function getOrder()
+    {
+        return 1; // number in which order to load fixtures
     }
 }
