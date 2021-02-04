@@ -20,6 +20,7 @@ class AppFixtures extends Fixture
                 ->setTitle($faker->sentence(rand(2,4)))
                 ->setDescription($faker->text())
                 ->setContent($faker->paragraph())
+                ->setImage("https://picsum.photos/720/480")
             ;
 
             $manager->persist($article);
