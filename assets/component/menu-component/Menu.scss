@@ -1,0 +1,22 @@
+.row {
+    width: 100%;
+}
+
+.dropdown-toggle:after { content: none }
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown>.dropdown-toggle:active {
+    pointer-events: none;
+  }
+
+#menu-links {
+    padding-left: 100px;
+    padding-right: 100px;
+
+    :hover {
+      color: #e03737;
+    }
+}

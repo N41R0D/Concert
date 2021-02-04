@@ -8,7 +8,7 @@ class Footer extends Component {
     render() {        
     return (
         <footer>
-        <Container>
+        <Container fluid className="footer">
         <Row>
             <Col className="text-center">
                 <h5>Réseaux Sociaux</h5>
