@@ -1,23 +1,19 @@
-.footer{
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: rgb(156, 156, 156);
-    width: 100%;
-  }
+ footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgb(156, 156, 156);
+  width: 100%;
 
-.footer p {
+}
+
+footer p {
     font-size: small;
 }
 
-.footer > .row > div[class^="col"] {
-  border-left: 1px solid #000000;
-  border-right: 1px solid #000;
+footer .row > div[class^="col"] {
+  border-left: 0.1px solid #000000;
 }
 
-.footer > .row > div[class^="col"]:first-child {
+footer .row > div[class^="col"]:first-child {
   border-left: none;
-}
-
-.footer > .row > div[class^="col"]:last-child {
-  border-right: none;
 }
