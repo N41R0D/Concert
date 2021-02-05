@@ -3,12 +3,15 @@
         "@babel/preset-react": "^7.0.0",
         "@symfony/webpack-encore": "^0.32.0",
         "core-js": "^3.0.0",
+        "node-sass": "^4.14.1",
         "regenerator-runtime": "^0.13.2",
+        "sass-loader": "^9.0.3",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
+        "start": "symfony server:start && npm run dev-server",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
@@ -16,9 +19,16 @@
     },
     "dependencies": {
         "axios": "^0.21.1",
+        "bootstrap": "^4.6.0",
         "jwt-decode": "^3.1.2",
+        "loaders.css": "^0.1.2",
+        "moment": "^2.29.1",
         "react": "^17.0.1",
+        "react-bootstrap": "^1.4.3",
         "react-dom": "^17.0.1",
-        "react-router": "^5.2.0"
+        "react-icons": "^4.1.0",
+        "react-loaders": "^3.0.1",
+        "react-router": "^5.2.0",
+        "react-router-dom": "^5.2.0"
     }
 }

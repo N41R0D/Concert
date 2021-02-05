@@ -20,7 +20,7 @@ class Privatisation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=lieu::class, inversedBy="id_priva")
+     * @ORM\ManyToOne(targetEntity=Lieu::class, inversedBy="id_priva")
      */
     private $idLieu;
 
@@ -79,12 +79,12 @@ class Privatisation
         return $this->id;
     }
 
-    public function getIdLieu(): ?lieu
+    public function getIdLieu(): ?Lieu
     {
         return $this->idLieu;
     }
 
-    public function setIdLieu(?lieu $idLieu): self
+    public function setIdLieu(?Lieu $idLieu): self
     {
         $this->idLieu = $idLieu;
 
