@@ -16,7 +16,7 @@ class CardComponent extends React.Component {
 			return (
 				<Card>
 					<div>
-						<Card.Img variant="left" src="#" />
+						<Card.Img src={this.props.concert.affiche} />
 					</div>
 
 					<Card.Body>
@@ -37,7 +37,7 @@ class CardComponent extends React.Component {
 			return (
 				<Card>
 					<div>
-						<Card.Img variant="left" src="#" />
+						<Card.Img src={this.props.article.image} />
 					</div>
 
 					<Card.Body>

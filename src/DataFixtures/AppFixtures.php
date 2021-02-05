@@ -13,7 +13,6 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create("fr_FR");
-        $faker->seed(0);
 
         for ($i=0; $i < 50; $i++) { 
             $article = new Article();
@@ -23,15 +22,13 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
                 ->setContent($faker->paragraph())
                 ->setImage("https://picsum.photos/720/480")
             ;
-
             $manager->persist($article);
         }
-
         $manager->flush();
     }
 
     public function getOrder()
     {
-        return 1; // number in which order to load fixtures
+        return 1;
     }
 }

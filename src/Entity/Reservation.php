@@ -20,19 +20,19 @@ class Reservation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=concert::class, inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity=Concert::class, inversedBy="reservations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $concert;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reservations")
      * @ORM\JoinColumn(nullable=false, name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=tickettype::class, inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity=TicketType::class, inversedBy="reservations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tickettype;
