@@ -130,8 +130,6 @@ const Accueil = () => {
 					</div>
 				</div>
 			</div>
-			<Programmation />
-			<Footer />
 		</div>
 	);
 }
