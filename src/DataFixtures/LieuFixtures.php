@@ -26,7 +26,7 @@ class LieuFixtures extends Fixture implements OrderedFixtureInterface
             ->setStreet('Rue d\'Aix')
             ->setCity('Aix-en-Provence')
             ->setZipCode(13100)
-            ->setNumberofplaces('100')
+            ->setNumberofplaces('150')
             ;
         $manager->persist($lieu);
         $lieux[] = $lieu;
@@ -37,7 +37,7 @@ class LieuFixtures extends Fixture implements OrderedFixtureInterface
             ->setStreet('Rue de Bourges')
             ->setCity('Bourges')
             ->setZipCode(18000)
-            ->setNumberofplaces('120')
+            ->setNumberofplaces('100')
         ;
         $manager->persist($lieu);
         $lieux[] = $lieu;
@@ -48,7 +48,7 @@ class LieuFixtures extends Fixture implements OrderedFixtureInterface
             ->setStreet('Rue de Cannes')
             ->setCity('Cannes')
             ->setZipCode(06400)
-            ->setNumberofplaces('110')
+            ->setNumberofplaces('200')
         ;
         $manager->persist($lieu);
 
@@ -58,7 +58,7 @@ class LieuFixtures extends Fixture implements OrderedFixtureInterface
             ->setStreet('Rue de Dunkerque')
             ->setCity('Dunkerque')
             ->setZipCode(59080)
-            ->setNumberofplaces('90')
+            ->setNumberofplaces('100')
         ;
         $manager->persist($lieu);
         $lieux[] = $lieu;
@@ -69,14 +69,12 @@ class LieuFixtures extends Fixture implements OrderedFixtureInterface
             ->setStreet('Rue d\'Echirolles')
             ->setCity('Echirolles')
             ->setZipCode(38130)
-            ->setNumberofplaces('115')
+            ->setNumberofplaces('150')
         ;
         $manager->persist($lieu);
         $lieux[] = $lieu;
         $manager->flush();
 
-//        $categories = [];
-//        $categories("pop", "rap", "electro", "rock", "metal");
 
         for($i=0; $i < 50; $i++){
             $dt = $faker->dateTimeBetween($startDate = '-1 years', $endDate = '+2 years');
@@ -97,10 +95,9 @@ class LieuFixtures extends Fixture implements OrderedFixtureInterface
                 ->setRestaurant($faker->boolean($chanceOfGettingTrue = 25))
                 ->setArtistPresentation($faker->text($maxNbChars = 200))
                 ->setIdLieu($faker->randomElement($lieux))
-                ->setAffiche("https://lh3.googleusercontent.com/proxy/Cs2hHyPO1aQ_ryW3w5DwT9EYTtXU7el71fnzwP4niPDZBwKc0ZZ8yZinCb2dzBapfoXlgxOewMYuOjtWbLpVWkniGKuKgOSA1YpNtZqSEhygAhFEsPvcjk7osxQK0SrahPOF1LqZLFDucfLafgI8Aj5r-Q99OipO3XI7oTjiBJmVhVtRivY")
+                ->setAffiche("https://www.fnacspectacles.com/static/0/visuel/300/404/JUL-EN-CONCERT_4044711912947113959.jpg")
                 ->setCategories([$faker->randomElement($array = array ("pop", "rap", "electro", "rock", "metal"))])
                 ->setIsMultimedia($faker->numberBetween($min = 0, $max = 1))
-//                ->setIdLieu($lieu)
             ;
             $manager->persist($concert);
         }
@@ -141,12 +138,22 @@ class LieuFixtures extends Fixture implements OrderedFixtureInterface
             ->setTotal(66.5)
         ;
         $manager->persist($reservation);
+
+        $reservation = new Reservation();
+        $reservation
+            ->setConcert($concert)
+            ->setUser($user)
+            ->setTickettype($tickettype)
+            ->setPlaces(['A3'])
+            ->setTotal(68.5)
+        ;
+        $manager->persist($reservation);
         $manager->flush();
 
     }
 
     public function getOrder()
     {
-        return 3; // number in which order to load fixtures
+        return 3;
     }
 }
