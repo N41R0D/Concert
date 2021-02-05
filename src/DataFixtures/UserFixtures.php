@@ -62,6 +62,6 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 2; // number in which order to load fixtures
+        return 2;
     }
 }

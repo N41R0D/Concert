@@ -1,6 +1,7 @@
 api_platform:
     title: 'API de Concert'
     description: "Projet d'école en groupe, de création d'une API Symfony lié a un front en React"
+    version: '0.0.1'
     enable_nelmio_api_doc: false
     # Enable the Swagger documentation and export.
     enable_swagger: true

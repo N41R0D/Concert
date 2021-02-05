@@ -20,7 +20,7 @@ class Reservation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=concert::class, inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity=Concert::class, inversedBy="reservations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $concert;

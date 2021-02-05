@@ -51,7 +51,16 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [ POST ] }
-        - { path: ^/api/users, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [ POST ] }
-        - { path: ^/api/users, roles: IS_AUTHENTICATED_FULLY, methods: [ GET ] }
-#        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY}
+#        - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [ POST ] } #On peut faire une requete POST sans etre connecté (plus pratique)
+#        - { path: ^/api/users, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [ POST ] } # Permet de s'inscrire sans etre connecté
+#        - { path: ^/api/privatisation, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [ POST ] } # Permet a une personne non conncecté de faire une demande de privatisation (sachant qu'il y a un formulaire dans la maquette, je n'ai pas rattaché la demande a un utilisateur)
+#        - { path: ^/api/users, roles: IS_AUTHENTICATED_FULLY, methods: [ GET ] } #Demande a etre connecté (peut importe le Role, pour faire une recherche GET sur la route USER
+#        # Ligne a decomenter à la fin du projet pour rendre la plateforme de concert sécurisé
+#        - { path: ^/api/reservation, roles: IS_AUTHENTICATED_FULLY, methods: [ POST, GET ] } # Pour entrer ou voir une reservation, il faut etre connecté
+#        - { path: ^/api/concert, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [ GET ] } # Permet de voir la liste des concert sur la page d'accueil sans etre connecté
+#        - { path: ^/api/articles, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [ GET ] } # Permet de voir la liste des articles sans etre connecté
+#        - { path: ^/api/lieus, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [ GET ] } # Permet de voir la liste des lieux sans etre connecté
+#        - { path: ^/api/concert, roles: ROLE_ADMIN, methods: [ POST ] } # Demande a etre admin pour entrer un nouveau concert
+#        - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY, methods: [ GET ] } # Permet a une personne connecter de faire le reste des requette GET (si non spécifié au dessus)
+#        - { path: ^/api/, roles: ROLE_ADMIN, methods: [POST, PUT, DELETE]} #Demande a avoir le role Admin pour effectuer le reste des requete POST ainsi que les PUT et DELETE
+#        - { path: ^/api/, roles: ROLE_ADMIN} #Au cas où...
