@@ -8,6 +8,7 @@ import SearchBar from './component/searchbar-component/SearchBar';
 import Footer from './component/footer-component/Footer';
 
 import Accueil from './page/page-accueil/accueil';
+import Reservation from './page/page-reservation/reservation';
 import AdminConcerts from './page/admin/page-concerts/concerts';
 import Concert from './page/admin/page-concerts/concert';
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/concerts/1" component={Concert}/>
                 <Route path="/admin/concert" component={AdminConcerts}/>
                 <Route path="/scheduled" component={Programmation}/>
+                <Route path="/reservation" component={Reservation}/>
             </Switch>
             <Footer />
         </BrowserRouter>
