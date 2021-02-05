@@ -119,7 +119,8 @@ class Menu extends React.Component {
               <Col xs md lg="2">
                 <Nav className="float-right">
                   {/** <Nav.Link as={Link} to="/account">Créer un compte</Nav.Link> **/}
-                  <Nav.Link as={Link} to="/admin/concert">Créer un compte</Nav.Link>
+                  <Nav.Link as={Link} to="admin/concert">ADMIN</Nav.Link>
+                  <Nav.Link as={Link} to="/auth">Connexion</Nav.Link>
                   <Nav.Link as={Link} to="/cart"><TiShoppingCart size={28} /></Nav.Link>
                 </Nav>
               </Col>
