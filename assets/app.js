@@ -11,12 +11,12 @@ import Accueil from './page/page-accueil/accueil';
 import AdminConcerts from './page/admin/page-concerts/concerts';
 import Concert from './page/admin/page-concerts/concert';
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, HashRouter } from 'react-router-dom';
 import Programmation from './page/page-programmation/programmation';
 
 function App() {
     return(
-        <BrowserRouter>
+        <HashRouter>
             <Menu/>
             <SearchBar/>
             <Switch>
@@ -26,13 +26,13 @@ function App() {
                 <Route path="/scheduled" component={Programmation}/>
             </Switch>
             <Footer />
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
 ReactDOM.render(
-        <BrowserRouter>
+        <HashRouter>
             <App />
-        </BrowserRouter>,
+        </HashRouter>,
     document.getElementById("root")
 );
