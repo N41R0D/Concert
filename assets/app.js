@@ -13,6 +13,7 @@ import AdminConcerts from './page/admin/page-concerts/concerts';
 import Concert from './page/admin/page-concerts/concert';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Programmation from './page/page-programmation/programmation';
 
 function App() {
     return(
@@ -23,6 +24,7 @@ function App() {
                 <Route exact path="/" component={Accueil}/>
                 <Route path="/concerts/1" component={Concert}/>
                 <Route path="/admin/concert" component={AdminConcerts}/>
+                <Route path="/scheduled" component={Programmation}/>
                 <Route path="/reservation" component={Reservation}/>
             </Switch>
             <Footer />
