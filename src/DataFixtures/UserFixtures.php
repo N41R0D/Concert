@@ -7,8 +7,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture implements OrderedFixtureInterface
 {
     /** @var UserPasswordEncoderInterface */
     private $encoder;
@@ -28,10 +29,9 @@ class UserFixtures extends Fixture
             ->setRoles(['ROLE_ADMIN'])
             ->setCivility($faker->titleMale)
             ->setBdDate(\DateTime::createFromFormat('Y-m-d', $faker->date($format = 'Y-m-d', $max = '20 years')))
-            ->setEmail($faker->email)
+            ->setEmail("admin@concert.com")
             ->setPassword($this->encoder->encodePassword($user, 'test'))
             ->setStreet($faker->streetAddress)
-//            ->setZipcode($faker->postcode)
             ->setZipcode(66666)
             ->setCity($faker->city)
             ->setCountry($faker->country)
@@ -46,7 +46,7 @@ class UserFixtures extends Fixture
             ->setRoles(['ROLE_USER'])
             ->setCivility($faker->titleMale)
             ->setBdDate(\DateTime::createFromFormat('Y-m-d', $faker->date($format = 'Y-m-d', $max = '20 years')))
-            ->setEmail($faker->email)
+            ->setEmail("user@concert.com")
             ->setPassword($this->encoder->encodePassword($user, 'test'))
             ->setStreet($faker->streetAddress)
             ->setZipcode(12222)
@@ -57,5 +57,11 @@ class UserFixtures extends Fixture
         $manager->persist($user);
 
         $manager->flush();
+        $this->setReference('user', $user);
+    }
+
+    public function getOrder()
+    {
+        return 2;
     }
 }

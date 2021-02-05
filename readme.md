@@ -28,6 +28,8 @@ Configurer la BDD dans le .env
 ```bash
 symfony server:start
 # url de test => localhost:8000/api
+# Si le https ne fonctionne pas, lancer la commande suivante
+symfony server:ca:install
 #et
 npm run dev-server
 #Pour le front

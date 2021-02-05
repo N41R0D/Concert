@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ConcertRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,7 +22,7 @@ class Concert
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="artist_name", type="string", length=255)
      */
     private $artist_name;
 
@@ -79,6 +81,31 @@ class Concert
      * @ORM\JoinColumn(nullable=false)
      */
     private $idLieu;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $affiche;
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $categories = [];
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isMultimedia;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="concert", orphanRemoval=true)
+     */
+    private $reservations;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -225,6 +252,72 @@ class Concert
     public function setIdLieu(?Lieu $idLieu): self
     {
         $this->idLieu = $idLieu;
+
+        return $this;
+    }
+
+    public function getAffiche(): ?string
+    {
+        return $this->affiche;
+    }
+
+    public function setAffiche(?string $affiche): self
+    {
+        $this->affiche = $affiche;
+
+        return $this;
+    }
+
+    public function getCategories(): ?array
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?array $categories): self
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    public function getIsMultimedia(): ?bool
+    {
+        return $this->isMultimedia;
+    }
+
+    public function setIsMultimedia(bool $isMultimedia): self
+    {
+        $this->isMultimedia = $isMultimedia;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setConcert($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getConcert() === $this) {
+                $reservation->setConcert(null);
+            }
+        }
 
         return $this;
     }
