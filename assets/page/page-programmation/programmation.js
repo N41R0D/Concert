@@ -70,7 +70,6 @@ const Programmation = () => {
 					</ul>
 				)}
 			</div>
-			<Footer />
 		</div>
 	);
 };
