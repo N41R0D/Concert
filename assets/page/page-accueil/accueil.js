@@ -1,8 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import { Carousel, Button } from "react-bootstrap";
 import CardComponent from "../../component/card-component/card";
-import Programmation from "../page-programmation/programmation";
-import Footer from "../../component/footer-component/Footer";
 import axios from 'axios';
 import "./accueil.scss"
 
