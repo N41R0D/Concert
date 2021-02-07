@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Image, Button, Nav, Card } from "react-bootstrap";
+import { Container, Row, Col, Image, Form, Nav, Card } from "react-bootstrap";
 import Footer from "../../component/footer-component/Footer";
 import axios from 'axios';
 import "./reservation.scss"
@@ -50,12 +50,13 @@ const Reservation = (props) => {
     pourcentTarif: null
   });
 
-  const [lieu, setLieu] = useState({ 
-    id: null, 
-    name: null, 
+  const [lieu, setLieu] = useState({
+    id: null,
+    name: null,
     city: null,
     street: null,
-    zipCode: null})
+    zipCode: null
+  })
 
   useEffect(() => {
     axios.get(url, {
@@ -120,12 +121,21 @@ const Reservation = (props) => {
         </Row>
         <Row>
           <Col>
-        <h2>1. Choisissez vos places sur le plan :</h2>
-        <GenerateRow plan={plan} />
+            <h2>1. Choisissez vos places sur le plan :</h2>
+            <GenerateRow plan={plan} />
           </Col>
         </Row>
         <Row>
           <h2>2. Choisissez le mode d'obtention des billets :</h2>
+        </Row>
+        <Row>
+          <Form>
+                <Form.Check
+                  disabled
+                  type="radio"
+                  label="option"
+                />
+          </Form>
         </Row>
       </Container>
     </>
