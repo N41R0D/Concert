@@ -1,0 +1,43 @@
+.page-header {
+  text-align: center;
+  background-color: #9c9c9c;
+  height: 100px;
+}
+
+.page-header h1 {
+  text-transform: uppercase;
+  padding-top: 20px;
+}
+
+.position, .musicCategory {
+  display: flex;
+}
+
+.position ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+}
+
+.position li {
+  border: 1px solid black;
+  padding:2px 15px;
+}
+
+.position ul li a {
+  display: block;
+  float: left;
+  width: 100px;
+  line-height: 50px;
+  /*hauteur de l'image de fond*/
+  background-color: black;
+  color: #DCDCDC;
+  text-decoration: none;
+  text-align: center;
+}
+
+.position ul li a:hover {
+  background-color: black;
+  color: white;
+}

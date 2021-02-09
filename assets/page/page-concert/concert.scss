@@ -1,0 +1,64 @@
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: antiquewhite;
+
+  .imgContainer {
+    border: solid 1px red;
+    width: 30%;
+    height: 300px;
+  }
+  .infoContainer {
+    margin-left: 5%;
+    border: solid 1px red;
+    display: flex;
+    align-items: center;
+    width: 30%;
+  }
+}
+
+.dateTab {
+  width: 90%;
+  margin:50px auto;
+}
+
+.tabHeader {
+  background-color: #ddd;
+}
+
+#myTable {
+  border-collapse: collapse; /* Collapse borders */
+  border-radius: 10px;
+  width: 100%; /* Full-width */
+  border-top: 1px solid #ddd; /* Add a grey border */
+  font-size: 18px; /* Increase font-size */
+}
+
+#myTable th, #myTable td {
+  text-align: left; /* Left-align text */
+  padding: 12px; /* Add padding */
+}
+
+#myTable tr {
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
+}
+
+.presentationContainer {
+  display: flex;
+  width: 90%;
+  margin:70px auto;
+
+  .presentation {
+    width: 70%;
+  }
+
+  .player {
+    margin-left: 5%;
+  }
+}
