@@ -9,6 +9,7 @@ import Footer from './component/footer-component/Footer';
 
 import Accueil from './page/page-accueil/accueil';
 import Reservation from './page/page-reservation/reservation';
+import ConcertVue from "./page/page-concert/concert";
 import AdminConcerts from './page/admin/page-concerts/concerts';
 import Concert from './page/admin/page-concerts/concert';
 
@@ -16,20 +17,21 @@ import { BrowserRouter, Switch, Route, HashRouter } from 'react-router-dom';
 import Programmation from './page/page-programmation/programmation';
 
 function App() {
-    return(
-        <HashRouter>
-            <Menu/>
-            <SearchBar/>
-            <Switch>
-                <Route exact path="/" component={Accueil}/>
-                <Route path="/concerts/1" component={Concert}/>
-                <Route path="/admin/concert" component={AdminConcerts}/>
-                <Route path="/scheduled" component={Programmation}/>
-                <Route path="/reservation" component={Reservation}/>
-            </Switch>
-            <Footer />
-        </HashRouter>
-    )
+    return (
+		<HashRouter>
+			<Menu />
+			<SearchBar />
+			<Switch>
+				<Route exact path="/" component={Accueil} />
+				<Route path="/concerts/1" component={Concert} />
+				<Route path="/admin/concert" component={AdminConcerts} />
+				<Route path="/scheduled" component={Programmation} />
+				<Route path="/reservation" component={Reservation} />
+				<Route path="/concert" component={ConcertVue} />
+			</Switch>
+			<Footer />
+		</HashRouter>
+	);
 }
 
 ReactDOM.render(

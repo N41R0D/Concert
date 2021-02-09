@@ -100,7 +100,7 @@ class Menu extends React.Component {
                       Réserver
                     </NavDropdown.Item>
                   </NavDropdown>
-                  <Nav.Link as={Link} to="/news">Actualités</Nav.Link>
+                  <Nav.Link as={Link} to="/concert">Actualités</Nav.Link>
 
                   <NavDropdown
                     title="Infos pratiques"

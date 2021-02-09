@@ -47,23 +47,20 @@ const Programmation = (props) => {
   function progrApiResult(cool) {
     for (let index = 0; index < cool.length; index++) {
       var url = "https://127.0.0.1:8000" + cool[index];
+
       axios
-			.all([
-				axios.get(url, {
-					headers: {
-						Accept: "application/json",
-					},
-				}),
-			])
-			.then(
-				axios.spread((dataConcert) => {
-					setConcert({
-						concert: dataConcert.data,
-					});
-					console.log("concert pret");
-					console.log(dataConcert.data);
-				})
-			); 
+			.get(url, {
+				headers: {
+					Accept: "application/json",
+				},
+			})
+			.then((response) => {
+				console.log(response.data);
+        setConcert(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
     }
   }
 
@@ -95,7 +92,6 @@ const Programmation = (props) => {
 					) : (
 						<div>
                 {apiData.lieu.map((location) => {
-                test = location.id;
 								return (
 									<div>
 										<input
@@ -189,7 +185,7 @@ const Programmation = (props) => {
           console.log(concert)
 
           // Ligne à décommenter pour appeler les concerts du lieux, mais probleme, ça boucle à l'infini
-          //progrApiResult(concert);
+          progrApiResult(concert);
           
 				})}
 			</div>
