@@ -28,7 +28,10 @@ class CardComponent extends React.Component {
 							<Card.Img src={this.props.concert.affiche} />
 						</div>
 
-						<Card.Body>
+						<Card.Body
+							as={Link}
+							to={"/concert/id=" + this.props.concert.id}
+						>
 							<Card.Title>
 								{this.props.concert.artistName}
 							</Card.Title>
@@ -42,9 +45,10 @@ class CardComponent extends React.Component {
 						</Card.Text>*/}
 							<Button
 								variant="primary"
-								onClick={(e) => this.handleClick("/concert", e)}
+								as={Link}
+                to={"/scheduled"}
 							>
-								Go Concert
+								Réserver
 							</Button>
 						</Card.Body>
 					</Card>
@@ -61,7 +65,7 @@ class CardComponent extends React.Component {
 							<Card.Text>
 								{this.props.article.description}
 							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
+							<Button variant="primary">En savoir plus</Button>
 						</Card.Body>
 					</Card>
 				);

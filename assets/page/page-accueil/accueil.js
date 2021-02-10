@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import { Carousel, Button } from "react-bootstrap";
 import CardComponent from "../../component/card-component/card";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 import "./accueil.scss"
 
 const Accueil = () => {
@@ -91,7 +92,12 @@ const Accueil = () => {
 							})
 						)}
 					</div>
-					<Button className="accueilButton" variant="outline-primary">
+					<Button
+						className="accueilButton"
+						variant="outline-primary"
+						as={Link}
+						to="/scheduled"
+					>
 						voir toute la programmation
 					</Button>{" "}
 				</div>
