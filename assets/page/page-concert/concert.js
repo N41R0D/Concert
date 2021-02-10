@@ -43,74 +43,71 @@ const Concert = () => {
 				<div>Chargement ...</div>
 			) : (
 				<div>
-					{console.log(apiData.concert.id)}
-					{/*apiData.lieu.map((location) => {
-						return (
-							<div className="header">
-								<div className="imgContainer"></div>
-								<div className="infoContainer">
-									<p>{apiData.id}</p>
-								</div>
-							</div>
-						);
-					})*/}
+					<div className="header">
+						<div className="imgContainer">
+							<img src={apiData.concert.affiche} alt="" />
+						</div>
+						<div className="infoContainer">
+							<ul>
+								<li>{apiData.concert.artistName}</li>
+								<li>{apiData.concert.concertName}</li>
+								<li>
+									{apiData.concert.date} à{" "}
+									{apiData.concert.schedule}
+								</li>
+								<li>{apiData.concert.idLieu}</li>
+								<li>{apiData.concert.categories}</li>
+							</ul>
+						</div>
+					</div>
+					<div className="dateTab">
+						<table id="myTable">
+							<thead className="tabHeader">
+								<tr>
+									<th>Date</th>
+									<th>Lieu</th>
+									<th>Heure</th>
+									<th>Ouverture</th>
+									<th>Catégorie de tarif</th>
+									<th>Tarifs</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{apiData.concert.date}</td>
+									<td>{apiData.concert.idLieu}</td>
+									<td>{apiData.concert.schedule}</td>
+									<td>{apiData.concert.openingTime}</td>
+									<td>{apiData.concert.tarifCateg}</td>
+									<td>{apiData.concert.tarifMax}</td>
+									<td>
+										<Button variant="primary">
+											Réserver
+										</Button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div className="presentationContainer">
+						<div className="presentation">
+							<h3>Présentation de l'artiste</h3>
+							<p>{apiData.concert.artistPresentation}</p>
+						</div>
+						<div className="player">
+							<iframe
+								src="https://open.spotify.com/embed/artist/7x83XhcMbOTl1UdYsPTuZM"
+								width="300"
+								height="270"
+								frameBorder="0"
+								allowtransparency="true"
+								allow="encrypted-media"
+							></iframe>
+						</div>
+					</div>
 				</div>
 			)}
-			<div className="dateTab">
-				<table id="myTable">
-					<thead className="tabHeader">
-						<tr>
-							<th>Date</th>
-							<th>Lieu</th>
-							<th>Heure</th>
-							<th>Ouverture</th>
-							<th>Catégorie de tarif</th>
-							<th>Tarifs</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Alfreds Futterkiste</td>
-							<td>Eletrical Engineer</td>
-							<td>futterkiste@gmail.com</td>
-							<td>+49 92992924</td>
-							<td>Germany</td>
-							<td>Frankfurt</td>
-							<td>
-								<Button variant="primary">Réserver</Button>
-							</td>
-						</tr>
-						<tr>
-							<td>Alfreds Futterkiste</td>
-							<td>Eletrical Engineer</td>
-							<td>futterkiste@gmail.com</td>
-							<td>+49 92992924</td>
-							<td>Germany</td>
-							<td>Frankfurt</td>
-							<td>
-								<Button variant="primary">Réserver</Button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div className="presentationContainer">
-				<div className="presentation">
-					<h3>Présentation de l'artiste</h3>
-					<p>blablabla</p>
-				</div>
-				<div className="player">
-					<iframe
-						src="https://open.spotify.com/embed/artist/7x83XhcMbOTl1UdYsPTuZM"
-						width="300"
-						height="270"
-						frameBorder="0"
-						allowtransparency="true"
-						allow="encrypted-media"
-					></iframe>
-				</div>
-			</div>
 			<div className="concertSlider">
 				<h2>À ne pas manquer</h2>
 				<div className="slider"></div>
