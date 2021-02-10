@@ -64,24 +64,24 @@ class Reservation
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
         return $this;
     }
 
-    public function getTickettype(): ?tickettype
+    public function getTickettype(): ?TicketType
     {
         return $this->tickettype;
     }
 
-    public function setTickettype(?tickettype $tickettype): self
+    public function setTickettype(?TicketType $tickettype): self
     {
         $this->tickettype = $tickettype;
 

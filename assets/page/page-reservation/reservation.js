@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Image, Button, Nav, Card } from "react-bootstrap";
-import Footer from "../../component/footer-component/Footer";
+import { Container, Row, Col, Image, Form, Nav } from "react-bootstrap";
 import axios from 'axios';
 import "./reservation.scss"
 import GenerateRow from "../../component/seating-component/seating"
+import { getConcertById, getLieuById, getUnavailableSeat, getOptions } from '../../api/ReservationApi'
 
 const rowName = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
 
-const unavailable = ["A1", "D3"]
+const Prices = (priceMax, percent) => {
+  const prices = [];
+  if(priceMax != null){
+    let tarifMax = parseFloat(priceMax);
+    prices.push(tarifMax);
+    for(let i=0; i<rowName.length; i++){
+      let minus = (tarifMax*percent)/100
+      let price = tarifMax - minus;
+      tarifMax = price.toFixed(2);
+      prices.push(tarifMax)
+    }
+  }
+  return prices;
+}
 
-const SeatingPlan = () => {
+const SeatingPlan = (unavailable) => {
   const nbrMax = 108;
   const nbrCol = 12;
   const nbrRow = nbrMax / nbrCol;
@@ -30,102 +43,169 @@ const SeatingPlan = () => {
   return (plan);
 };
 
-const Reservation = (props) => {
+function handleClick(id) {
+  let letter = id.id[0];
+  let index = rowName.find(item => item === letter);
+}
 
-  // URL pour récupérer les places non disponibles sur la réservation
-  const availableUrl = "/api/concerts/checkdispo";
-  const baseUrl = "https://127.0.0.1:8000";
-  const url = "https://127.0.0.1:8000/api/concerts/50";
-
-  const [data, setData] = useState({
-    artist: "",
-    concert: "",
+const Reservation = ({id}) => {
+  const [price, setPrice] = useState();
+  const [unavailable, setUnavailable] = useState([]);
+  const [concert, setConcert] = useState({
+    idConcert: null,
+    artist: null,
+    concertName: null,
     dateConcert: null,
     heureConcert: null,
     idLieu: null,
-    affiche: "",
+    srcAffiche: null,
     categories: [],
-    tarifCatef: 0,
+    catTarif: null,
     tarifMax: null,
     pourcentTarif: null
-  });
+  })
 
-  const [lieu, setLieu] = useState({ 
-    id: null, 
-    name: null, 
+  const [lieu, setLieu] = useState({
+    id: null,
+    name: null,
     city: null,
     street: null,
-    zipCode: null})
-
-  useEffect(() => {
-    axios.get(url, {
-      headers: {
-        Accept: "application/json",
-      }
-    }).then(res => {
-      setData({
-        artist: res.data.artistName,
-        concert: res.data.concertName,
-        dateConcert: res.data.date,
-        heureConcert: res.data.openingTime,
-        lieu: res.data.idLieu,
-        affiche: res.data.affiche,
-        categories: res.data.categories,
-        pourcentTarif: res.data.pourcentTarif
-      })
-    })
+    zipCode: null
   })
+  //id, name, extraCost, description, reservation[]
+  const [options, setOption] = useState([])
 
-  useEffect(() => {
-    const reqUrl = baseUrl + data.lieu;
-    console.log(reqUrl);
-    axios.get(reqUrl, {
-      headers: {
-        Accept: "application/json",
-      }
-    }).then(res => {
-      setLieu({
-        id: res.data.id,
-        name: res.data.name,
-        city: res.data.city,
-        street: res.data.street,
-        zipCode: res.data.zipCode
-      })
-    })
-  })
+  useEffect(()=>{
+    axios.all([getConcertById({id}), getUnavailableSeat({id}), getOptions()])
+      .then(axios.spread((resConcert, resUnavailable, resOptions) => {
+        setConcert({
+          idConcert: resConcert.data.id,
+          artist: resConcert.data.artistName,
+          concertName: resConcert.data.concertName,
+          dateConcert: resConcert.data.date,
+          heureConcert: resConcert.data.openingTime,
+          lieu: resConcert.data.idLieu,
+          affiche: resConcert.data.affiche,
+          categories: resConcert.data.categories,
+          pourcentTarif: resConcert.data.pourcentTarif,
+          tarifMax: resConcert.data.tarifMax
+        });
+        setUnavailable(resUnavailable.data);
+        setOption(resOptions.data)
+      })).catch(err => {
+        console.log(err)
+      });
 
+  }, [])
 
-  const plan = [] = SeatingPlan();
+  useEffect(()=>{
+    if (concert.lieu != null) {
+      getLieuById(concert.lieu).then(res => {
+        setLieu({
+          id: res.data.id,
+          name: res.data.name,
+          city: res.data.city,
+          street: res.data.street,
+          zipCode: res.data.zipCode
+        })
+      }).catch(err => {
+        console.log(err)
+      });
+    }})
+
+  const plan = [] = SeatingPlan(unavailable);
+  const prices = [] = Prices(concert.tarifMax, concert.pourcentTarif)
 
   return (
     <>
       <Container>
         <Row>
-          <Col>
-            <h3>{data.artist}</h3>
-            <Row>
-              <Col>
-                <Image src={data.affiche}></Image>
-              </Col>
-              <Col>
-                <ul>
-                  <li>Le {data.dateConcert} à {data.heureConcert}</li>
-                  <li> {lieu.street}, {lieu.name}, {lieu.zipCode}</li>
-                  <li> {data.categories}</li>
-                </ul>
-              </Col>
-            </Row>
-          </Col>
-          <Col>[plan google lieu]</Col>
+          <Nav className="justify-content-center" activeKey="/home">
+            <Nav.Item>
+              <Nav.Link href="/home">Etape 1</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link-1">Etape 2</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link-2">Etape 3</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link-2">Etape 4</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link-2">Etape </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link-2">Etape 5</Nav.Link>
+            </Nav.Item>
+          </Nav>
         </Row>
         <Row>
           <Col>
-        <h2>1. Choisissez vos places sur le plan :</h2>
-        <GenerateRow plan={plan} />
+            <h3>{concert.concertName} par {concert.artist}</h3>
+          </Col>
+        </Row>
+        <Row>
+              <Col>
+                <Image src={concert.affiche} alt={concert.artist}></Image>
+              </Col>
+              <Col>
+                <ul>
+                  <li>Le {concert.dateConcert} à {concert.heureConcert}</li>
+                  <li> {lieu.name}, {lieu.street} {lieu.zipCode} {lieu.city} </li>
+                  <li> {concert.categories}</li>
+                </ul>
+              </Col>
+          <Col>
+            [plan google lieu]
+          </Col>
+            </Row>
+        <Row>
+          <Col>
+            <h2>1. Choisissez vos places sur le plan :</h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+                <ul>
+                  <li>Cat 1 - {concert.tarifMax}€ à {prices[2]}€</li>
+                  <li>Cat 2 - {prices[3]}€ à {prices[5]}€</li>
+                  <li>Cat 3 - {prices[6]}€ à {prices[8]}€</li>
+                </ul>
+          </Col>
+          <Col className="col-lg-10 col-md-10 col-sm-12">
+            <GenerateRow plan={plan} handleClick={handleClick} />
           </Col>
         </Row>
         <Row>
           <h2>2. Choisissez le mode d'obtention des billets :</h2>
+        </Row>
+        <Row>
+          <Col>
+            {options.length > 0 &&
+              <Form>
+                {options.map((option) => (
+                  <Row>
+                    <Col>
+                      <Form.Check
+                        type="radio"
+                        label={option.name}
+                        id={option.id}
+                      />
+                      <p>{option.extraCost}€</p>
+                    </Col>
+                    <Col>
+                      <p>{option.description}</p>
+                    </Col>
+
+                  </Row>
+                ))}
+
+
+              </Form>
+            }
+          </Col>
         </Row>
       </Container>
     </>
