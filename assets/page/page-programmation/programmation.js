@@ -45,25 +45,26 @@ const Programmation = (props) => {
   }, []
   );
 
-  function progrApiResult(cool) {
+  const progrApiResult = (cool) => {
     for (let index = 0; index < cool.length; index++) {
       var url = "https://127.0.0.1:8000" + cool[index];
-      
-      axios
-			.get(url, {
-				headers: {
-					Accept: "application/json",
-				},
-			})
-			.then((response) => {
-				//console.log(response.data);
-        setConcert({ concertNum: response.data });
-        concertList.push({ concertNum: response.data });
-        setIsConcert(true);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+      useEffect(async () => {
+			axios
+				.get(url, {
+					headers: {
+						Accept: "application/json",
+					},
+				})
+				.then((response) => {
+					//console.log(response.data);
+					setConcert({ concertNum: response.data });
+					concertList.push({ concertNum: response.data });
+					setIsConcert(true);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}, []);
     }
   }
 
@@ -186,7 +187,7 @@ const Programmation = (props) => {
 				)}
 				{concertLieu.map((concertTab) => {
 					// Ligne à décommenter pour appeler les concerts du lieux, mais probleme, ça boucle à l'infini
-					progrApiResult(concertTab);
+					//progrApiResult(concertTab);
 				})}
 			</div>
 		</div>

@@ -1,12 +1,14 @@
 import React, { Component, useEffect, useState } from "react";
-import { Carousel, Button } from "react-bootstrap";
+import { Carousel, Button, Image } from "react-bootstrap";
 import CardComponent from "../../component/card-component/card";
+import moment from "moment";
 import axios from "axios";
 import "./concert.scss";
 
 const Concert = () => {
   const [isConcert, setIsConcert] = useState(false);
   const [apiData, setApiData] = useState({ concert: null });
+  
 
   const getConcertById = (id) => {
     var url = "https://127.0.0.1:8000/api/concerts/" + id;
@@ -45,15 +47,17 @@ const Concert = () => {
 				<div>
 					<div className="header">
 						<div className="imgContainer">
-							<img src={apiData.concert.affiche} alt="" />
+							<Image src={apiData.concert.affiche} alt="" />
 						</div>
 						<div className="infoContainer">
 							<ul>
 								<li>{apiData.concert.artistName}</li>
 								<li>{apiData.concert.concertName}</li>
 								<li>
-									{apiData.concert.date} à{" "}
-									{apiData.concert.schedule}
+									{moment(apiData.concert.date).format(
+										"DD-MM-YYYY"
+									)}{" "}
+									à {apiData.concert.schedule}
 								</li>
 								<li>{apiData.concert.idLieu}</li>
 								<li>{apiData.concert.categories}</li>
@@ -75,10 +79,22 @@ const Concert = () => {
 							</thead>
 							<tbody>
 								<tr>
-									<td>{apiData.concert.date}</td>
+									<td>
+										{moment(apiData.concert.date).format(
+											"DD-MM-YYYY"
+										)}
+									</td>
 									<td>{apiData.concert.idLieu}</td>
-									<td>{apiData.concert.schedule}</td>
-									<td>{apiData.concert.openingTime}</td>
+									<td>
+										{moment(
+											apiData.concert.schedule
+										).format("h:mm:ss a")}
+									</td>
+									<td>
+										{moment(
+											apiData.concert.openingTime
+										).format("h:mm:ss a")}
+									</td>
 									<td>{apiData.concert.tarifCateg}</td>
 									<td>{apiData.concert.tarifMax}</td>
 									<td>
