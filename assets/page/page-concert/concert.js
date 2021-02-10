@@ -98,7 +98,7 @@ const Concert = () => {
 									<td>{apiData.concert.tarifCateg}</td>
 									<td>{apiData.concert.tarifMax}</td>
 									<td>
-										<Button variant="primary">
+										<Button variant="primary" as={Link} to={"/reservation/"+ apiData.concert.id}>
 											Réserver
 										</Button>
 									</td>
