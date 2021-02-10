@@ -1,5 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import { Carousel, Button, Image } from "react-bootstrap";
+import { Link, withRouter } from "react-router-dom";
 import CardComponent from "../../component/card-component/card";
 import moment from "moment";
 import axios from "axios";
@@ -98,7 +99,7 @@ const Concert = () => {
 									<td>{apiData.concert.tarifCateg}</td>
 									<td>{apiData.concert.tarifMax}</td>
 									<td>
-										<Button variant="primary" as={Link} to={"/reservation/"+ apiData.concert.id}>
+										<Button variant="primary" as={Link} to={"/reservation/id="+ apiData.concert.id}>
 											Réserver
 										</Button>
 									</td>
