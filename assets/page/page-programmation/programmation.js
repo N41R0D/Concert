@@ -10,8 +10,9 @@ import { useLocation } from "react-router";
 const Programmation = (props) => {
   const { register, watch } = useForm();
   const [apiData, setApiData] = useState({ lieu: null, concert: null})
-  const [concert, setConcert] = useState({ concert: null})
+  const [apiConcert, setConcert] = useState({ concertNum: null})
   const [isData, setIsData] = useState(false)
+  const [isConcert, setIsConcert] = useState(false);
   const lieux = watch("locations", props.locations);
   const genres = watch("musicCat", props.musicCat)
 
@@ -44,23 +45,26 @@ const Programmation = (props) => {
   }, []
   );
 
-  function progrApiResult(cool) {
+  const progrApiResult = (cool) => {
     for (let index = 0; index < cool.length; index++) {
       var url = "https://127.0.0.1:8000" + cool[index];
-
-      axios
-			.get(url, {
-				headers: {
-					Accept: "application/json",
-				},
-			})
-			.then((response) => {
-				console.log(response.data);
-        setConcert(response.data);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+      useEffect(async () => {
+			axios
+				.get(url, {
+					headers: {
+						Accept: "application/json",
+					},
+				})
+				.then((response) => {
+					//console.log(response.data);
+					setConcert({ concertNum: response.data });
+					concertList.push({ concertNum: response.data });
+					setIsConcert(true);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}, []);
     }
   }
 
@@ -75,6 +79,7 @@ const Programmation = (props) => {
   }
 
   let concertLieu = []
+  let concertList = [];
     
     
 	return (
@@ -103,7 +108,7 @@ const Programmation = (props) => {
 										{location.name}
 									</div>
 								);
-              })}
+							})}
 							{locationConcerts()}
 						</div>
 					)}
@@ -169,24 +174,20 @@ const Programmation = (props) => {
 					)}
 				</div>
 			</div>
-      <div className="programmationResult">
-        {/*
-          !isData ? (
-            <div>Chargement ...</div>
-          ) : (
-            concert.concert.map((concert) => {
-              return (
-                <CardComponent key={concert.id} concert={concert} />
-              );
-            })
-          )
-          */}
-        {concertLieu.map((concert) => {
-          console.log(concert)
-
-          // Ligne à décommenter pour appeler les concerts du lieux, mais probleme, ça boucle à l'infini
-          progrApiResult(concert);
-          
+			<div className="programmationResult">
+				{!isConcert ? (
+					<div>Chargement ...</div>
+        ) : (
+            console.log(concertList)
+					/*apiConcert.concertNum.map((concert) => {
+						return (
+							<CardComponent key={concert.id} concert={concert} />
+						);
+					})*/
+				)}
+				{concertLieu.map((concertTab) => {
+					// Ligne à décommenter pour appeler les concerts du lieux, mais probleme, ça boucle à l'infini
+					//progrApiResult(concertTab);
 				})}
 			</div>
 		</div>

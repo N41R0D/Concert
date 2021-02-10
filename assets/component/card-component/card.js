@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Card } from 'react-bootstrap';
 import { Link, withRouter } from "react-router-dom";
 import "./card.scss"
+import moment from "moment";
 
 
 class CardComponent extends React.Component {
@@ -28,11 +29,16 @@ class CardComponent extends React.Component {
 							<Card.Img src={this.props.concert.affiche} />
 						</div>
 
-						<Card.Body>
+						<Card.Body
+							as={Link}
+							to={"/concert/id=" + this.props.concert.id}
+						>
 							<Card.Title>
 								{this.props.concert.artistName}
 							</Card.Title>
-							<Card.Text>{this.props.concert.date}</Card.Text>
+							<Card.Text>
+                {moment(this.props.concert.date).format('DD-MM-YYYY')}
+							</Card.Text>
 							{/*<Card.Text>
 							{new Intl.DateTimeFormat("fr-FR", {
 								year: "numeric",
@@ -42,9 +48,10 @@ class CardComponent extends React.Component {
 						</Card.Text>*/}
 							<Button
 								variant="primary"
-								onClick={(e) => this.handleClick("/concert", e)}
+								as={Link}
+								to={"/scheduled"}
 							>
-								Go Concert
+								Réserver
 							</Button>
 						</Card.Body>
 					</Card>
@@ -61,7 +68,7 @@ class CardComponent extends React.Component {
 							<Card.Text>
 								{this.props.article.description}
 							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
+							<Button variant="primary">En savoir plus</Button>
 						</Card.Body>
 					</Card>
 				);

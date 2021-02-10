@@ -49,6 +49,17 @@
   background-color: #f1f1f1;
 }
 
+.infoContainer {
+  ul {
+    list-style: none;
+  }
+
+  li:first-child {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+}
+
 .presentationContainer {
   display: flex;
   width: 90%;
