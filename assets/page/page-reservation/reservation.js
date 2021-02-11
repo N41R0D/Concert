@@ -48,7 +48,16 @@ function handleClick(id) {
   let index = rowName.find(item => item === letter);
 }
 
-const Reservation = ({id}) => {
+function getIdUrl() {
+  var url2 = window.location.href; // or window.location.href for current url
+  var captured = /id=([^&]+)/.exec(url2)[1]; // Value is in [1] ('384' in our case)
+  var result = captured ? captured : "myDefaultValue";
+  // console.log(result);
+  return result;
+}
+
+const Reservation = () => {
+  const idResa = getIdUrl()
   const [price, setPrice] = useState();
   const [unavailable, setUnavailable] = useState([]);
   const [concert, setConcert] = useState({
@@ -76,7 +85,7 @@ const Reservation = ({id}) => {
   const [options, setOption] = useState([])
 
   useEffect(()=>{
-    axios.all([getConcertById({id}), getUnavailableSeat({id}), getOptions()])
+    axios.all([getConcertById(idResa), getUnavailableSeat(idResa), getOptions()])
       .then(axios.spread((resConcert, resUnavailable, resOptions) => {
         setConcert({
           idConcert: resConcert.data.id,
